@@ -10,9 +10,11 @@ struct Vector3f
 	float Z;
 
 	void Set(float X, float Y, float Z);
-	float Length() const;
-	float LengthSquared() const;
-	void MakeUnitVector();
+	float Magnitude() const;
+	float MagnitudeSquared() const;
+	void Normalize();
+
+	Vector3f Normalized() const;
 
 	Vector3f operator+() const;
 	Vector3f operator-() const;
@@ -38,7 +40,6 @@ struct Vector3f
 
 	static Vector3f Cross(const Vector3f& vectorA, const Vector3f& vectorB);
 	static float Dot(const Vector3f& vectorA, const Vector3f& vectorB);
-	static Vector3f UnitVector(const Vector3f& vector);
 
 	static Vector3f Zero();
 };
@@ -53,19 +54,25 @@ inline void Vector3f::Set(float x, float y, float z)
 	Z = z;
 }
 
-inline float Vector3f::Length() const
+inline float Vector3f::Magnitude() const
 {
-	return sqrt(LengthSquared());
+	return (float)sqrt(MagnitudeSquared());
 }
 
-inline float Vector3f::LengthSquared() const
+inline float Vector3f::MagnitudeSquared() const
 {
 	return (X * X) + (Y * Y) + (Z * Z);
 }
 
-inline void Vector3f::MakeUnitVector()
+inline void Vector3f::Normalize()
 {
-	*this = (*this) / Length();
+	*this = (*this) / Magnitude();
+}
+
+inline Vector3f Vector3f::Normalized() const
+{
+	Vector3f result = (*this) / Magnitude();
+	return result;
 }
 
 inline Vector3f Vector3f::operator+() const
@@ -140,7 +147,7 @@ inline Vector3f& Vector3f::operator+=(const Vector3f& rhs)
 	return *this;
 }
 
-Vector3f& Vector3f::operator-=(const Vector3f& rhs)
+inline Vector3f& Vector3f::operator-=(const Vector3f& rhs)
 {
 	X -= rhs.X;
 	Y -= rhs.Y;
@@ -242,7 +249,7 @@ inline Vector3f operator-(const Vector3f& vectorA, const Vector3f& vectorB)
 	return result;
 }
 
-inline Vector3f Cross(const Vector3f& vectorA, const Vector3f& vectorB)
+inline Vector3f Vector3f::Cross(const Vector3f& vectorA, const Vector3f& vectorB)
 {
 	Vector3f result =
 	{
@@ -250,21 +257,16 @@ inline Vector3f Cross(const Vector3f& vectorA, const Vector3f& vectorB)
 		(vectorA.Z * vectorB.X) - (vectorA.X * vectorB.Z),
 		(vectorA.X * vectorB.Y) - (vectorA.Y * vectorB.X)
 	};
+	return result;
 }
 
-inline float Dot(const Vector3f& vectorA, const Vector3f& vectorB)
+inline float Vector3f::Dot(const Vector3f& vectorA, const Vector3f& vectorB)
 {
 	float result =
 		(vectorA.X * vectorB.X) +
 		(vectorA.Y * vectorB.Y) +
 		(vectorA.Z * vectorB.Z);
 	return result;
-}
-
-static Vector3f UnitVector(const Vector3f& vector)
-{
-	float length = vector.Length();
-	return vector / length;
 }
 
 inline Vector3f Vector3f::Zero()

@@ -185,6 +185,8 @@
   <ItemGroup>
     <ClInclude Include="Include\ColorF.h" />
     <ClInclude Include="Include\Image.h" />
+    <ClInclude Include="Include\Matrix3f.h" />
+    <ClInclude Include="Include\OrthonormalBasis.h" />
     <ClInclude Include="Include\Vector3.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="pch.h" />
@@ -198,6 +200,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Image.cpp" />
+    <ClCompile Include="Source\OrthonormalBasis.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
