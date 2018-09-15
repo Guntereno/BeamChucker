@@ -12,12 +12,12 @@ public:
 		mWidth(width),
 		mHeight(height)
 	{
-		Pixels = new ColorF[mWidth * mHeight];
+		mPixels = new ColorF[mWidth * mHeight];
 	}
 
 	~Image()
 	{
-		delete[] Pixels;
+		delete[] mPixels;
 	}
 
 	size_t GetSize()
@@ -28,14 +28,14 @@ public:
 	ColorF& operator[](size_t index)
 	{
 		assert(index < GetSize());
-		return Pixels[index];
+		return mPixels[index];
 	}
 
 	ColorF& GetPixel(size_t x, size_t y)
 	{
 		assert(x < mWidth);
 		assert(y < mHeight);
-		return Pixels[x + (y * mWidth)];
+		return mPixels[x + (y * mWidth)];
 	}
 
 	void SetPixel(size_t x, size_t y, ColorF color)
@@ -54,9 +54,10 @@ public:
 	}
 
 	void SaveBmp(const char* pFileName);
-	
+	void GammaCorrect(float gamma);
+
 private:
-	ColorF* Pixels;
+	ColorF* mPixels;
 	size_t mWidth;
 	size_t mHeight;
 };

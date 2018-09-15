@@ -49,3 +49,23 @@ void Image::SaveBmp(const char * pFileName)
 
 	FreeImage_DeInitialise();
 }
+
+void Image::GammaCorrect(float gamma)
+{
+	ColorF temp;
+	float power = 1.0f / gamma;
+	for (int y = 0; y < mHeight; ++y)
+	{
+		for (int x = 0; x < mWidth; ++x)
+		{
+			ColorF& pixel = mPixels[x + (y * mWidth)];
+			temp = pixel;
+			pixel = ColorF
+			{
+				pow(temp.R, power),
+				pow(temp.G, power),
+				pow(temp.B, power)
+			};
+		}
+	}
+}
