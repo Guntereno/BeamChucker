@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 struct ColorF
 {
 	float R;
@@ -150,7 +152,7 @@ inline ColorF ColorF::Lerp(const ColorF & colorA, const ColorF & colorB, float t
 
 inline ColorF ColorF::Black()
 {
-	return ColorF{ 1.0f, 1.0f, 1.0f };
+	return ColorF{ 0.0f, 0.0f, 0.0f };
 }
 
 inline ColorF ColorF::Red()

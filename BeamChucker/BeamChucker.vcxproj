@@ -185,10 +185,13 @@
   <ItemGroup>
     <ClInclude Include="Include\ColorF.h" />
     <ClInclude Include="Include\Image.h" />
+    <ClInclude Include="Include\IShape.h" />
     <ClInclude Include="Include\Matrix3f.h" />
     <ClInclude Include="Include\OrthonormalBasis.h" />
+    <ClInclude Include="Include\Ray.h" />
+    <ClInclude Include="Include\Sphere.h" />
+    <ClInclude Include="Include\Triangle.h" />
     <ClInclude Include="Include\Vector3.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +204,8 @@
     </ClCompile>
     <ClCompile Include="Source\Image.cpp" />
     <ClCompile Include="Source\OrthonormalBasis.cpp" />
+    <ClCompile Include="Source\Sphere.cpp" />
+    <ClCompile Include="Source\Triangle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,13 +35,11 @@ void Image::SaveBmp(const char * pFileName)
 
 	for (size_t y = 0; y < mHeight; ++y)
 	{
-		for (size_t X = 0; X < mWidth; ++X)
+		for (size_t x = 0; x < mWidth; ++x)
 		{
-			ColorF imageColor = GetPixel(X, y);
+			ColorF imageColor = GetPixel(x, y);
 			RGBQUAD freeImageColor = ConvertColor(imageColor);
-
-			size_t bmpY = (mHeight - 1) - y; // Free Image has 0 at bottom where Image treats 0 as top
-			FreeImage_SetPixelColor(pBitmap, (int)X, (int)bmpY, &freeImageColor);
+			FreeImage_SetPixelColor(pBitmap, (int)x, (int)y, &freeImageColor);
 		}
 	}
 
